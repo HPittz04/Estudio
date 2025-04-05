@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main>
       {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center text-white" 
+      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center text-white "  
         style={{ backgroundImage: "url('/fotocapa-web.jpg')" }}>
         <div className="absolute inset-0 bg-black/50"></div> {/* Camada escura */}
         <h1 className="relative text-5xl font-bold z-10">BEM VINDOS!</h1>
@@ -18,7 +18,7 @@ export default function Home() {
 
 
 <div className="relative z-10 text-white max-w-4xl mx-auto text-center">
-<h1 className="text-5xl font-bold mb-6">BEM VINDOS!</h1>
+<h1 className="text-5xl font-bold mb-6"></h1>
 
         <p className="text-sm leading-relaxed tracking-wide text-white-300 uppercase">
             O ESTÚDIO 747 É UM ESPAÇO PARA GRAVAÇÃO E PÓS-PRODUÇÃO ÁUDIO; TEMOS AO TEU DISPOR
