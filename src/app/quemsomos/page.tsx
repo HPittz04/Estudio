@@ -1,28 +1,27 @@
 export default function QuemSomos() {
   return (
     <main
-      className="relative flex items-center justify-start h-[50vh] sm:h-[60vh] bg-cover bg-center text-white px-4 sm:px-6"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat pt-32 sm:pt-[6rem]"
       style={{ backgroundImage: "url('/quemsomos-fundo.jpg')" }}
     >
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="relative z-10 text-white max-w-4xl mx-auto text-center">
+  <h1 className="text-5xl font-bold mb-6 pt-25">QUEM SOMOS</h1>
+  <p className="text-sm leading-relaxed tracking-wide text-white-300 uppercase">
+    O ESTÚDIO 747 É UM ESPAÇO PARA GRAVAÇÃO E PÓS-PRODUÇÃO ÁUDIO; TEMOS AO TEU DISPOR
+    TODOS OS MEIOS TÉCNICOS E HUMANOS <span className="font-semibold text-white">(ESPECIALIZADOS E NECESSÁRIOS) </span>
+    PARA A REALIZAÇÃO DE PRODUTOS ÁUDIO, ASSIM COMO UMA SALA DE ENSAIOS À DISPOSIÇÃO.
+  </p>
+  <p className="mt-4 text-sm leading-relaxed tracking-wide text-white-300">
+    O NOSSO PRINCIPAL OBJETIVO É FAZER MÚSICA E, SIMULTANEAMENTE,
+    POSSIBILITAR A TODOS OS QUE PARTILHEM O MESMO <span className="italic">MOTTO</span>:
+    A CONCRETIZAÇÃO DAS SUAS AMBIÇÕES.
+  </p>
+  <p className="mt-4 text-sm leading-relaxed tracking-wide text-white-300">
+    ADAPTAMO-NOS À REALIDADE DE TODOS OS PROJETOS, PELO QUE NÃO HESITES EM CONTACTAR-NOS.
+    ESTAMOS AQUI PARA FAZER ACONTECER!
+  </p>
+</div>
 
-      {/* Adiciona padding-top extra para mobile */}
-      <div className="relative w-full text-left pl-4 sm:pl-20 pt-10 sm:pt-0">
-        <h1 className="text-3xl sm:text-5xl font-bold mb-4 sm:mb-6">QUEM SOMOS</h1>
-        <p className="text-sm sm:text-base leading-relaxed">
-          O ESTÚDIO 747 É UM ESPAÇO PARA GRAVAÇÃO E PÓS-PRODUÇÃO ÁUDIO; TEMOS AO TEU DISPOR TODOS OS
-          MEIOS TÉCNICOS E HUMANOS (ESPECIALIZADOS E NECESSÁRIOS) PARA A REALIZAÇÃO DE PRODUTOS ÁUDIO,
-          ASSIM COMO UMA SALA DE ENSAIOS À DISPOSIÇÃO.
-        </p>
-        <p className="mt-2 sm:mt-4 text-sm sm:text-base leading-relaxed">
-          O NOSSO PRINCIPAL OBJETIVO É FAZER MÚSICA E, SIMULTANEAMENTE, POSSIBILITAR A TODOS OS QUE
-          PARTILHEM O MESMO <i>MOTTO</i>: A CONCRETIZAÇÃO DAS SUAS AMBIÇÕES.
-        </p>
-        <p className="mt-2 sm:mt-4 text-sm sm:text-base leading-relaxed">
-          ADAPTAMO-NOS À REALIDADE DE TODOS OS PROJETOS, PELO QUE NÃO HESITES EM CONTACTAR-NOS.
-          ESTAMOS AQUI PARA FAZER ACONTECER!
-        </p>
-      </div>
     </main>
   );
 }

@@ -23,12 +23,6 @@ export default function Footer() {
             <Link href="/servicos" className="hover:text-white">SERVIÇOS</Link>
           </li>
           <li>
-            <Link href="/merch" className="hover:text-white">MERCH</Link>
-          </li>
-          <li>
-            <Link href="/soro" className="hover:text-white">SORO</Link>
-          </li>
-          <li>
             <Link href="/contactos" className="hover:text-white">CONTACTOS</Link>
           </li>
         </ul>

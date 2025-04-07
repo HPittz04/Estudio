@@ -45,8 +45,6 @@ export default function Navbar() {
           <Link href="/" className="hover:text-gray-300">HOME</Link>
           <Link href="/quemsomos" className="hover:text-gray-300">QUEM SOMOS</Link>
           <Link href="/servicos" className="hover:text-gray-300">SERVIÇOS</Link>
-          <Link href="/merch" className="hover:text-gray-300">MERCH</Link>
-          <Link href="/soro" className="hover:text-gray-300">SORO</Link>
           <Link href="/contactos" className="hover:text-gray-300">CONTACTOS</Link>
           <button className="hover:text-gray-300">
             <AiOutlineSearch size={20} />
@@ -73,12 +71,6 @@ export default function Navbar() {
       </li>
       <li>
         <Link onClick={toggleMenu} href="/servicos" className="hover:text-gray-300">SERVIÇOS</Link>
-      </li>
-      <li>
-        <Link onClick={toggleMenu} href="/merch" className="hover:text-gray-300">MERCH</Link>
-      </li>
-      <li>
-        <Link onClick={toggleMenu} href="/soro" className="hover:text-gray-300">SORO</Link>
       </li>
       <li>
         <Link onClick={toggleMenu} href="/contactos" className="hover:text-gray-300">CONTACTOS</Link>
