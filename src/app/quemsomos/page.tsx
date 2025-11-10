@@ -1,21 +1,37 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Quem somos — Laboratório criativo Estúdio 747",
+  description:
+    "Conhece a equipa do Estúdio 747 em Vendas Novas. Mentoria artística, engenharia de som e estratégia de conteúdo ao serviço de artistas e marcas.",
+  alternates: {
+    canonical: "/quemsomos",
+  },
+  openGraph: {
+    title: "Equipa Estúdio 747",
+    description:
+      "Profissionais de produção musical e storytelling áudio dedicados a projetos autorais, comerciais e comunitários.",
+    url: "/quemsomos",
+  },
+};
+
 const VALUES = [
   {
-    title: "Mentoria artística",
+    title: "Mentoria contínua",
     description:
-      "Acompanhamos cada artista antes, durante e depois da gravação para garantir que a visão criativa chega intacta ao público.",
+      "Guiamos o projeto desde a pré-produção até ao lançamento com feedback criativo, direção vocal e gestão de objetivos.",
   },
   {
-    title: "Colaboração verdadeira",
+    title: "Comunidade e inclusão",
     description:
-      "Trabalhamos como uma extensão da tua equipa, criando um ambiente seguro para experimentar e arriscar.",
+      "Criamos um espaço seguro para experimentar, onde artistas de diferentes estilos e origens encontram apoio real.",
   },
   {
-    title: "Compromisso com a qualidade",
+    title: "Inovação sonora",
     description:
-      "Do setup de microfones ao mastering final, cada detalhe é afinado para que o resultado seja competitivo.",
+      "Adotamos fluxos híbridos, ferramentas de som imersivo e metodologias ágeis para entregar resultados competitivos.",
   },
 ];
 
@@ -24,14 +40,14 @@ const TEAM = [
     name: "Micshyne",
     role: "Produtor executivo & engenheiro de som",
     description:
-      "Mais de 15 anos de experiência em produção musical, com créditos em projetos nacionais e internacionais.",
+      "Mais de 15 anos de produção musical, sound design e engenharia de mistura para artistas independentes e marcas internacionais.",
     portrait: "/7.jpg",
   },
   {
     name: "Soro Music",
     role: "Direção criativa & vocal coaching",
     description:
-      "Artista, letrista e orientador vocal que garante performances autênticas e memoráveis.",
+      "Artista, letrista e vocal coach que conduz sessões de interpretação, escrita e storytelling áudio para lançar músicas e campanhas com identidade.",
     portrait: "/8.jpg",
   },
 ];
@@ -44,11 +60,11 @@ export default function QuemSomos() {
         <div className="relative mx-auto flex max-w-5xl flex-col gap-6 px-4 py-24 text-center sm:px-6 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Quem somos</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">
-            Um estúdio criado por artistas, para artistas.
+            Um laboratório criativo para som, conteúdo e experiências ao vivo.
           </h1>
           <p className="mx-auto max-w-3xl text-base text-slate-200 sm:text-lg">
-            O Estúdio 747 é um espaço de criação sonora em Vendas Novas. Produção, captação, edição e pós-produção convivem com
-            uma sala de ensaios pronta para acolher bandas, solistas e criativos de todas as áreas.
+            O Estúdio 747 nasce em Vendas Novas para servir artistas, marcas e comunidades. Produção musical, podcasts, vídeos e
+            eventos híbridos convivem com uma sala de ensaios equipada e pronta para novas ideias.
           </p>
           <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
@@ -74,8 +90,8 @@ export default function QuemSomos() {
             Manifesto do Estúdio 747
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-center text-sm text-slate-300">
-            Mais do que um estúdio, somos uma comunidade que celebra diversidade e respeito. Cada projeto é tratado com rigor e
-            uma dose saudável de ousadia.
+            Mais do que um estúdio, somos uma plataforma colaborativa. Acreditamos que respeito, transparência e curiosidade são
+            a base para resultados memoráveis.
           </p>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {VALUES.map(({ title, description }) => (

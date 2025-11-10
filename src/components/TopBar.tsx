@@ -69,7 +69,7 @@ export default function TopBar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-xs text-slate-100 sm:px-6 sm:text-sm">
         <div className="flex flex-wrap items-center gap-4">
           <span className="font-semibold uppercase tracking-widest text-primary-200">
-            Estúdio 747
+            Estúdio 747 • Som imersivo & produção musical
           </span>
           <a
             href="mailto:747estudio.rec@gmail.com"
