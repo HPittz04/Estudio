@@ -1,3 +1,20 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contactos Estúdio 747",
+  description:
+    "Marca a tua sessão no Estúdio 747. Disponível para produção musical, som imersivo, podcasts e conteúdos comerciais em Vendas Novas ou remotamente.",
+  alternates: {
+    canonical: "/contactos",
+  },
+  openGraph: {
+    title: "Fala com o Estúdio 747",
+    description:
+      "Contacta-nos por email ou telefone para agendar produção musical, gravação, mistura, masterização ou criação de conteúdos.",
+    url: "/contactos",
+  },
+};
+
 const CONTACT_METHODS = [
   {
     label: "E-mail",
@@ -20,7 +37,8 @@ export default function Contactos() {
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Contactos</p>
           <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">Fala connosco!</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-200 sm:text-lg">
-            Estamos prontos para te ajudar a dar o próximo passo no teu projeto. Escolhe o canal de contacto preferido ou agenda uma visita.
+            Estamos prontos para te ajudar a dar o próximo passo no teu projeto. Escolhe o canal de contacto preferido ou agenda
+            uma visita presencial ou remota.
           </p>
         </div>
       </section>
@@ -34,7 +52,7 @@ export default function Contactos() {
                 Linhas diretas
               </h2>
               <p className="mt-2 text-sm text-slate-300">
-                Preferes email, chamada ou mensagem? Responderemos com a maior brevidade possível.
+                Preferes email, chamada ou mensagem? Respondemos geralmente em menos de 24 horas úteis.
               </p>
             </div>
             <div className="space-y-6">

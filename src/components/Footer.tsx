@@ -65,7 +65,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-slate-300">
-              Produção, captação, mistura e masterização numa casa criativa no coração de Vendas Novas.
+              Produção musical, som imersivo, podcasts e conteúdos para marcas a partir de uma casa criativa em Vendas Novas.
             </p>
           </div>
           <nav aria-label="Mapa do site" className="space-y-3">
