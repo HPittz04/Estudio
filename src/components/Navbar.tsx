@@ -1,83 +1,121 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AiOutlineSearch } from "react-icons/ai";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 
+const NAV_LINKS = [
+  { href: "/", label: "Início" },
+  { href: "/quemsomos", label: "Quem somos" },
+  { href: "/servicos", label: "Serviços" },
+  { href: "/contactos", label: "Contactos" },
+];
+
 export default function Navbar() {
-  const [scrollY, setScrollY] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [isElevated, setIsElevated] = useState(false);
+  const pathname = usePathname();
+
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setIsElevated(window.scrollY > 12);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const threshold = 30;
-  const navbarTop = scrollY < threshold ? "2rem" : "0rem";
-  const bgOpacity = scrollY < threshold ? 0.5 + (scrollY / threshold) * 0.5 : 1;
-  const bgColor = `rgba(26,26,46,${bgOpacity})`;
-  const paddingClass = scrollY < threshold ? "py-4" : "py-2";
-
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
-    <nav
-      style={{ top: navbarTop, backgroundColor: bgColor }}
-      className={`fixed left-0 w-full z-40 shadow-md transition-all duration-300 ${paddingClass}`}
+    <header
+      className={`sticky top-0 z-50 border-b border-white/10 bg-gradient-to-b from-surface/95 via-surface/90 to-surface/60 backdrop-blur-xl transition-shadow ${isElevated ? "shadow-lg shadow-black/40" : "shadow-none"}`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-10 flex justify-between items-center text-white">
-        {/* Logotipo */}
-        <Link href="/" className="flex items-center">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 text-white sm:px-6">
+        <Link href="/" className="flex items-center gap-3" aria-label="Voltar ao início">
           <Image
             src="/logo-747.png"
-            alt="Estúdio 747"
-            width={120}
-            height={50}
-            className="h-12 w-auto"
+            alt="Logótipo do Estúdio 747"
+            width={132}
+            height={48}
+            className="h-12 w-auto drop-shadow-lg"
+            priority
           />
         </Link>
-
-        {/* Menu Desktop */}
-        <div className="hidden md:flex space-x-6 text-sm font-semibold">
-          <Link href="/" className="hover:text-gray-300">HOME</Link>
-          <Link href="/quemsomos" className="hover:text-gray-300">QUEM SOMOS</Link>
-          <Link href="/servicos" className="hover:text-gray-300">SERVIÇOS</Link>
-          <Link href="/contactos" className="hover:text-gray-300">CONTACTOS</Link>
-          <button className="hover:text-gray-300">
-            <AiOutlineSearch size={20} />
-          </button>
-        </div>
-
-        {/* Botão Mobile */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="hover:text-white-300">
-            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-          </button>
-        </div>
+        <nav className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.2em] text-slate-100 md:flex" aria-label="Navegação principal">
+          {NAV_LINKS.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`relative transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 ${
+                  isActive
+                    ? "text-white after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:bg-primary-300"
+                    : "text-slate-200/80 hover:text-white"
+                }`}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {label}
+              </Link>
+            );
+          })}
+          <Link
+            href="/contactos"
+            className="rounded-full bg-primary-400 px-4 py-2 text-xs font-bold uppercase tracking-[0.3em] text-surface shadow-lg transition hover:bg-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+          >
+            Reservar sessão
+          </Link>
+        </nav>
+        <button
+          type="button"
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 md:hidden"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+        >
+          {isOpen ? <FaTimes aria-hidden /> : <FaBars aria-hidden />}
+        </button>
       </div>
-
-      {/* Menu Mobile */}
-      {isOpen && (
-  <div className="md:hidden bg-[rgba(26,26,46,0.9)]">
-    <ul className="flex flex-col space-y-4 p-4 text-center text-sm font-semibold text-white">
-      <li>
-        <Link onClick={toggleMenu} href="/" className="hover:text-gray-300">HOME</Link>
-      </li>
-      <li>
-        <Link onClick={toggleMenu} href="/quemsomos" className="hover:text-gray-300">QUEM SOMOS</Link>
-      </li>
-      <li>
-        <Link onClick={toggleMenu} href="/servicos" className="hover:text-gray-300">SERVIÇOS</Link>
-      </li>
-      <li>
-        <Link onClick={toggleMenu} href="/contactos" className="hover:text-gray-300">CONTACTOS</Link>
-      </li>
-    </ul>
-  </div>
-)}
-    </nav>
+      <nav
+        id="mobile-navigation"
+        className={`md:hidden transform-gpu border-t border-white/10 bg-surface/95 text-white transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"
+        }`}
+        aria-label="Navegação principal em dispositivos móveis"
+      >
+        <ul className="space-y-2 px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em]">
+          {NAV_LINKS.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`block rounded-full px-4 py-2 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 ${
+                    isActive ? "bg-primary-400 text-surface" : "hover:bg-white/10"
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
+          <li>
+            <Link
+              href="/contactos"
+              className="block rounded-full bg-primary-400 px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.3em] text-surface shadow-lg transition hover:bg-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+            >
+              Reservar sessão
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
