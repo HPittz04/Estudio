@@ -183,7 +183,7 @@ export default function Home() {
                     alt={alt}
                     fill
                     className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(min-width: 1024px) 240px, (min-width: 640px) 45vw, 80vw"
+                    sizes="(min-width: 1280px) 240px, (min-width: 480px) 45vw, 80vw"
                     priority={index === 0}
                   />
                 </div>
