@@ -1,8 +1,9 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const FEATURE_CARDS = [
   {
@@ -31,8 +32,56 @@ const GALLERY_IMAGES = [
   { src: "/fotocapa-web.jpg", alt: "Artista a gravar voz no Estúdio 747" },
 ];
 
+const MotionLink = motion(Link);
+
 export default function Home() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const heroTextVariants = useMemo(
+    () => ({
+      hidden: {
+        opacity: 0,
+        y: shouldReduceMotion ? 0 : 28,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: shouldReduceMotion ? 0 : 0.8,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }),
+    [shouldReduceMotion],
+  );
+
+  const heroMediaVariants = useMemo(
+    () => ({
+      hidden: {
+        opacity: 0,
+        scale: shouldReduceMotion ? 1 : 0.96,
+      },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: shouldReduceMotion ? 0 : 0.8,
+          ease: [0.22, 1, 0.36, 1],
+          delay: shouldReduceMotion ? 0 : 0.1,
+        },
+      },
+    }),
+    [shouldReduceMotion],
+  );
+
+  const cardTransition = useMemo(
+    () => ({
+      duration: shouldReduceMotion ? 0 : 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    }),
+    [shouldReduceMotion],
+  );
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -74,7 +123,12 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-hero-surface">
         <div className="absolute inset-0 bg-black/50" aria-hidden></div>
         <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-24 pt-24 sm:px-6 lg:flex-row lg:items-center">
-          <div className="max-w-2xl space-y-6 text-center lg:text-left">
+          <motion.div
+            className="max-w-2xl space-y-6 text-center lg:text-left"
+            variants={heroTextVariants}
+            initial={shouldReduceMotion ? undefined : "hidden"}
+            animate={shouldReduceMotion ? undefined : "visible"}
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.5em] text-primary-300">Estúdio 747</p>
             <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
               Produção áudio imersiva para artistas que querem soar a futuro.
@@ -84,27 +138,43 @@ export default function Home() {
               tecnologia de ponta.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
+              <MotionLink
                 href="/contactos"
                 className="inline-flex items-center justify-center rounded-full bg-primary-400 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-surface shadow-glow transition hover:bg-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileFocus={shouldReduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >
                 Marcar sessão
-              </Link>
-              <Link
+              </MotionLink>
+              <MotionLink
                 href="/servicos"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileFocus={shouldReduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >
                 Ver serviços
-              </Link>
+              </MotionLink>
             </div>
-          </div>
-          <div className="relative grid flex-1 gap-4 sm:grid-cols-2">
+          </motion.div>
+          <motion.div
+            className="relative grid flex-1 gap-4 sm:grid-cols-2"
+            variants={heroMediaVariants}
+            initial={shouldReduceMotion ? undefined : "hidden"}
+            animate={shouldReduceMotion ? undefined : "visible"}
+          >
             {GALLERY_IMAGES.slice(0, 4).map(({ src, alt }, index) => (
-              <button
+              <motion.button
                 key={src}
                 type="button"
                 onClick={() => openModal(index)}
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-2 text-left shadow-lg transition hover:border-primary-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                whileFocus={shouldReduceMotion ? undefined : { y: -2 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <span className="sr-only">Ampliar fotografia do estúdio</span>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
@@ -118,9 +188,9 @@ export default function Home() {
                   />
                 </div>
                 <p className="mt-3 text-sm font-medium text-slate-200">{alt}</p>
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -138,17 +208,21 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {FEATURE_CARDS.map(({ title, description }) => (
-              <article
+            {FEATURE_CARDS.map(({ title, description }, index) => (
+              <motion.article
                 key={title}
                 className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-lg transition hover:border-primary-300/60 hover:shadow-glow"
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ ...cardTransition, delay: shouldReduceMotion ? 0 : index * 0.1 }}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-white">{title}</h3>
                   <p className="mt-3 text-sm text-slate-300">{description}</p>
                 </div>
                 <span className="mt-6 h-1 w-16 rounded-full bg-primary-300" aria-hidden></span>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -167,20 +241,27 @@ export default function Home() {
                 sair.
               </p>
             </div>
-            <Link
+            <MotionLink
               href="/quemsomos"
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+              whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
+              whileFocus={shouldReduceMotion ? undefined : { scale: 1.02 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
               Conhecer a equipa
-            </Link>
+            </MotionLink>
           </div>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY_IMAGES.map(({ src, alt }, index) => (
               <li key={src}>
-                <button
+                <motion.button
                   type="button"
                   onClick={() => openModal(index)}
                   className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg transition hover:border-primary-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+                  whileHover={shouldReduceMotion ? undefined : { y: -6 }}
+                  whileFocus={shouldReduceMotion ? undefined : { y: -4 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <span className="sr-only">Abrir {alt}</span>
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -193,7 +274,7 @@ export default function Home() {
                       loading="lazy"
                     />
                   </div>
-                </button>
+                </motion.button>
               </li>
             ))}
           </ul>
