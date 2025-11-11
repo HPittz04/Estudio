@@ -7,19 +7,61 @@ import { useEffect, useMemo, useState } from "react";
 
 const FEATURE_CARDS = [
   {
-    title: "Som imersivo e mistura híbrida",
+    title: "Estúdio de gravação profissional",
     description:
-      "Masters competitivos com cadeia analógica e digital, loudness otimizado para streaming e versões imersivas quando o projeto o exige.",
+      "Equipamento de topo, acompanhamento técnico-artístico e produção completa para dar voz às tuas ideias, da primeira take à master final.",
   },
   {
-    title: "Planeamento estratégico do lançamento",
+    title: "Espaço multidisciplinar flexível",
     description:
-      "Pré-produção colaborativa, sessões de discovery e acompanhamento pós-lançamento para garantir coerência entre som, imagem e narrativa.",
+      "O Estúdio B adapta-se a ensaios, escrita, produção ou workshops, com acústica cuidada e atmosfera intimista para explorar novas ideias.",
   },
   {
-    title: "Conteúdos para artistas e marcas",
+    title: "Cowork criativo e acolhedor",
     description:
-      "Captação de podcasts, spots publicitários, live sessions e packs de conteúdo social prontos a publicar em qualquer plataforma.",
+      "Estações individuais, Wi-Fi rápido e ambiente descontraído para artistas, freelancers e estudantes que procuram foco com boa energia.",
+  },
+];
+
+const SERVICE_SECTIONS = [
+  {
+    id: "gravacao",
+    eyebrow: "Estúdio de gravação",
+    title: "Autenticidade com equipamento profissional.",
+    description:
+      "No Estúdio 747 encontras a estrutura certa para despir filtros, gravar com verdade e levar cada canção até ao detalhe final.",
+    bullets: [
+      "Gravação de voz, instrumentos, podcasts ou locuções",
+      "Produção musical, arranjos e pré/pós-produção",
+      "Mistura e masterização com atenção ao detalhe",
+      "Acompanhamento técnico e artístico ao longo do processo",
+      "Equipamento profissional, ambiente descontraído e criativo",
+    ],
+  },
+  {
+    id: "multidisciplinar",
+    eyebrow: "Espaço multidisciplinar",
+    title: "Estúdio B & Sala de Ensaios prontos para se moldar a ti.",
+    description:
+      "Um refúgio para experimentar e colaborar — ideal para ensaios, composição, produção ou encontros criativos que exigem flexibilidade.",
+    bullets: [
+      "Sala convertível para ensaios, produção, escrita ou workshops",
+      "Boa acústica e ambiente intimista",
+      "Horários flexíveis e uso por marcação",
+    ],
+  },
+  {
+    id: "cowork",
+    eyebrow: "Cowork criativo",
+    title: "Trabalha com alma, foco e boa companhia.",
+    description:
+      "Um espaço tranquilo para pousar o portátil, respirar fundo e avançar com projetos num ambiente estimulante e humano.",
+    bullets: [
+      "Secretárias individuais e Wi-Fi rápido",
+      "Máquina de café sempre disponível",
+      "Bar e música ambiente para manter o fluxo",
+      "Acesso diário, semanal ou mensal",
+    ],
   },
 ];
 
@@ -129,14 +171,36 @@ export default function HomePage() {
             initial={shouldReduceMotion ? undefined : "hidden"}
             animate={shouldReduceMotion ? undefined : "visible"}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.5em] text-primary-300">Estúdio 747</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.5em] text-primary-300">Cultura criativa no interior</p>
             <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
-              Produção musical, som imersivo e storytelling áudio feitos à medida.
+              Estúdio 747 — o sítio onde os egos ficam à porta.
             </h1>
             <p className="text-base text-slate-200 sm:text-lg">
-              Ajudamos artistas, marcas e criadores a transformarem ideias em experiências sonoras memoráveis com direção
-              criativa, mentoria vocal e tecnologia preparada para o futuro do áudio.
+              Fundado em 2021, o Estúdio 747 nasceu para elevar a cultura no interior e criar um espaço onde criatividade,
+              verdade e desenvolvimento artístico andam de mãos dadas.
             </p>
+            <p className="text-base text-slate-200 sm:text-lg">
+              Aqui, a música vem sempre primeiro. Somos ponto de encontro para artistas, freelancers e sonhadores que
+              procuram liberdade pessoal, espiritual e coletiva através da arte.
+            </p>
+            <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-6 text-left text-sm text-slate-200 shadow-lg">
+              <p className="font-semibold uppercase tracking-[0.3em] text-primary-200">Disponibilizamos</p>
+              <ul className="mt-4 space-y-2">
+                <li className="flex gap-2">
+                  <span aria-hidden>🎙️</span>
+                  <span>Estúdio de gravação profissional</span>
+                </li>
+                <li className="flex gap-2">
+                  <span aria-hidden>🥁</span>
+                  <span>Espaço multidisciplinar — Estúdio B / Sala de ensaios</span>
+                </li>
+                <li className="flex gap-2">
+                  <span aria-hidden>💻</span>
+                  <span>Cowork acolhedor com foco e alma</span>
+                </li>
+              </ul>
+              <p className="mt-4 text-xs uppercase tracking-[0.3em] text-slate-400">Entra no 747 e vê a tua evolução descolar.</p>
+            </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <MotionLink
                 href="/contactos"
@@ -198,12 +262,12 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-texture opacity-80" aria-hidden></div>
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Experiência 747</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">O que acontece no 747</p>
             <h2 id="valores-heading" className="mt-4 text-3xl font-bold text-white sm:text-4xl">
-              Cada projeto recebe uma equipa dedicada e um plano claro.
+              Um hub criativo para gravar, ensaiar e trabalhar com propósito.
             </h2>
             <p className="mt-3 text-base text-slate-300">
-              Ligamos direção artística, engenharia de som e estratégia digital para que saias com música, conteúdos e assets prontos a lançar.
+              Do primeiro take ao lançamento, tens equipa dedicada, tecnologia preparada e espaços pensados para alimentar a tua visão artística.
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -224,6 +288,49 @@ export default function HomePage() {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section
+        className="relative isolate overflow-hidden bg-surface/80 py-16"
+        aria-labelledby="servicos-detalhes"
+      >
+        <div className="absolute inset-0 bg-texture opacity-60" aria-hidden></div>
+        <div className="relative mx-auto max-w-5xl space-y-12 px-4 sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Serviços 747</p>
+            <h2 id="servicos-detalhes" className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+              Espaços pensados para criar, experimentar e crescer.
+            </h2>
+            <p className="mt-3 text-sm text-slate-300">
+              Do estúdio principal ao cowork, cada sala foi desenhada para te dar foco, conforto e a liberdade de levar o teu
+              projeto mais longe.
+            </p>
+          </div>
+          {SERVICE_SECTIONS.map(({ id, eyebrow, title, description, bullets }) => (
+            <article
+              key={id}
+              id={id}
+              aria-labelledby={`${id}-titulo`}
+              className="rounded-3xl border border-white/10 bg-surface/95 p-8 shadow-xl backdrop-blur"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">{eyebrow}</p>
+              <h3 id={`${id}-titulo`} className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+                {title}
+              </h3>
+              <p className="mt-3 text-sm text-slate-300">{description}</p>
+              <ul className="mt-6 space-y-2 text-sm text-slate-200">
+                {bullets.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span aria-hidden className="mt-1 text-primary-200">
+                      •
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </section>
 
