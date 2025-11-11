@@ -33,7 +33,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b border-white/10 bg-gradient-to-b from-surface/95 via-surface/90 to-surface/60 backdrop-blur-xl transition-shadow ${isElevated ? "shadow-lg shadow-black/40" : "shadow-none"}`}
+      style={{ top: "var(--topbar-visible-height, 0px)" }}
+      className={`sticky z-50 border-b border-white/10 bg-gradient-to-b from-surface/95 via-surface/90 to-surface/60 backdrop-blur-xl transition-shadow ${isElevated ? "shadow-lg shadow-black/40" : "shadow-none"}`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 text-white sm:px-6">
         <Link href="/" className="flex items-center gap-3" aria-label="Voltar ao início">
