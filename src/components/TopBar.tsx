@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -47,6 +47,7 @@ const SOCIAL_LINKS = [
 
 export default function TopBar() {
   const [hidden, setHidden] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
@@ -62,8 +63,35 @@ export default function TopBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const updateHeights = () => {
+      const height = barRef.current?.offsetHeight ?? 0;
+
+      if (typeof document !== "undefined") {
+        document.documentElement.style.setProperty("--topbar-height", `${height}px`);
+        document.documentElement.style.setProperty(
+          "--topbar-visible-height",
+          hidden ? "0px" : `${height}px`,
+        );
+      }
+    };
+
+    updateHeights();
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateHeights);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", updateHeights);
+      }
+    };
+  }, [hidden]);
+
   return (
     <div
+      ref={barRef}
       className={`fixed inset-x-0 top-0 z-[60] bg-surface/80 backdrop-blur-md border-b border-white/10 transition-transform duration-300 ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-xs text-slate-100 sm:px-6 sm:text-sm">
