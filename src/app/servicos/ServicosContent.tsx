@@ -3,37 +3,43 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const SERVICES = [
+const SERVICE_SPACES = [
   {
-    title: "Pré-produção & direção artística",
-    items: [
-      "Sessões de discovery para alinhar referências e objetivos",
-      "Arranjos, beatmaking e seleção de músicos e parceiros",
-      "Planeamento de cronograma, orçamento e entregáveis",
+    id: "gravacao",
+    eyebrow: "Estúdio de gravação",
+    title: "Aqui a tua verdade ganha voz.",
+    description:
+      "No Estúdio 747 tens equipamento profissional e acompanhamento técnico-artístico para despir filtros e chegar à gravação que imaginaste.",
+    bullets: [
+      "Gravação de voz, instrumentos, podcasts ou locuções",
+      "Produção musical, arranjos e pré/pós-produção",
+      "Mistura e masterização com atenção ao detalhe",
+      "Acompanhamento contínuo ao longo do processo",
     ],
   },
   {
-    title: "Gravação e sessões híbridas",
-    items: [
-      "Cabines tratadas acusticamente e microfones premium",
-      "Captação multicanal para voz, bandas e instrumentos solistas",
-      "Sessões remotas com streaming de áudio em alta resolução",
+    id: "multidisciplinar",
+    eyebrow: "Espaço multidisciplinar",
+    title: "Estúdio B & Sala de ensaios para explorar ideias.",
+    description:
+      "Um espaço flexível que funciona como sala de ensaios, zona de produção ou refúgio de escrita, sempre com boa acústica e ambiente intimista.",
+    bullets: [
+      "Sala convertível para ensaios, produção, escrita ou workshops",
+      "Boa acústica e ambiente intimista",
+      "Horários flexíveis e uso por marcação",
     ],
   },
   {
-    title: "Mistura, master e som imersivo",
-    items: [
-      "Mixagem híbrida com hardware analógico e controlo digital",
-      "Masters otimizados para Spotify, YouTube, Apple Music e rádios",
-      "Versões binaurais e entregas Dolby Atmos Ready quando necessário",
-    ],
-  },
-  {
-    title: "Conteúdo e ativações",
-    items: [
-      "Produção de podcasts, spots e voice-overs multilingue",
-      "Live sessions, videocasts e making of com equipa de vídeo parceira",
-      "Pacotes de conteúdo social e consultoria de lançamento",
+    id: "cowork",
+    eyebrow: "Cowork criativo",
+    title: "Trabalha com foco, alma e boa energia.",
+    description:
+      "Secretárias individuais, Wi-Fi rápido e música ambiente para artistas, freelancers, estudantes e equipas criativas que procuram tranquilidade.",
+    bullets: [
+      "Secretárias individuais e Wi-Fi rápido",
+      "Máquina de café sempre disponível e bar",
+      "Espaço calmo com boa energia e música ambiente",
+      "Acesso diário, semanal ou mensal",
     ],
   },
 ];
@@ -88,35 +94,40 @@ export default function ServicosContent() {
       <section className="relative isolate overflow-hidden bg-hero-surface">
         <div className="absolute inset-0 bg-black/55" aria-hidden></div>
         <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:py-32">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Serviços</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">Serviços & Espaços</p>
           <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
-            Soluções integradas para lançamentos com identidade.
+            Estúdio 747 — o sítio onde os egos ficam à porta.
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-base text-slate-200 sm:text-lg">
-            Combinamos produção musical, engenharia de som e estratégia de conteúdo para que cada single, EP, álbum ou campanha
-            saia com a qualidade que imaginas.
+            Fundado em 2021 para elevar a cultura no interior, criámos um espaço onde a criatividade, a verdade e o desenvolvimento artístico andam de mãos dadas — da gravação ao cowork.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-200 sm:text-base">
+            Aqui, a música vem primeiro. Explora os nossos estúdios, agenda ensaios ou reserva o cowork criativo para fazer as tuas ideias descolar.
           </p>
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden py-16" aria-labelledby="lista-servicos">
+      <section className="relative isolate overflow-hidden py-16" aria-labelledby="espacos-estudio">
         <div className="absolute inset-0 bg-texture opacity-70" aria-hidden></div>
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 id="lista-servicos" className="text-center text-3xl font-bold text-white sm:text-4xl">
-            O nosso fluxo de trabalho
+          <h2 id="espacos-estudio" className="text-center text-3xl font-bold text-white sm:text-4xl">
+            Escolhe o ambiente certo para o teu projeto
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-center text-sm text-slate-300">
-            Escolhe as etapas que precisas ou constrói connosco um pacote à medida do teu calendário e orçamento.
+            Reserva apenas o espaço de que precisas ou cria connosco um plano completo que inclua captação, produção, mistura e acompanhamento criativo.
           </p>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {SERVICES.map(({ title, items }) => (
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {SERVICE_SPACES.map(({ id, eyebrow, title, description, bullets }) => (
               <article
-                key={title}
+                key={id}
                 className="flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-lg transition hover:border-primary-300/60 hover:shadow-glow"
+                id={id}
               >
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary-300">{eyebrow}</p>
                 <h3 className="text-2xl font-semibold text-white">{title}</h3>
+                <p className="text-sm text-slate-300">{description}</p>
                 <ul className="space-y-2 text-sm text-slate-300">
-                  {items.map((item) => (
+                  {bullets.map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="mt-1 h-2 w-2 rounded-full bg-primary-300" aria-hidden></span>
                       <span>{item}</span>
@@ -126,6 +137,17 @@ export default function ServicosContent() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16" aria-labelledby="cowork-callout">
+        <div className="mx-auto flex max-w-5xl flex-col gap-8 rounded-3xl border border-white/10 bg-white/5 px-6 py-12 text-center shadow-lg sm:px-10">
+          <h2 id="cowork-callout" className="text-3xl font-bold text-white sm:text-4xl">
+            Entra no 747 e vê a tua evolução descolar.
+          </h2>
+          <p className="mx-auto max-w-3xl text-sm text-slate-200 sm:text-base">
+            Artistas, freelancers e sonhadores encontram aqui um ponto de encontro para criar sem egos e com total foco na música. Diz-nos o que precisas e construímos contigo a experiência certa: uma sessão de gravação, um retiro criativo ou a tua nova base de trabalho.
+          </p>
         </div>
       </section>
 
