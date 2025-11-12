@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { ReservationForm } from "./_components/reservation-form";
+
 export const metadata: Metadata = {
   title: "Contactos Estúdio 747",
   description:
@@ -80,14 +82,17 @@ export default function Contactos() {
               <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Visitas sob marcação prévia.</p>
             </div>
           </div>
-          <div className="flex-1 overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg">
-            <iframe
-              title="Localização do Estúdio 747"
-              className="h-[420px] w-full"
-              src="https://maps.google.com/maps?q=estudio747+Vendas+Novas&output=embed"
-              loading="lazy"
-              allowFullScreen
-            />
+          <div className="flex-1 space-y-6">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg">
+              <iframe
+                title="Localização do Estúdio 747"
+                className="h-[420px] w-full"
+                src="https://maps.google.com/maps?q=estudio747+Vendas+Novas&output=embed"
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
+            <ReservationForm />
           </div>
         </div>
       </section>
