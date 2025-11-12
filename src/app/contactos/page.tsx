@@ -25,7 +25,7 @@ const CONTACT_METHODS = [
   },
   {
     label: "Telefone",
-    values: ["+351 967 862 700", "+351 962 404 814"],
+    values: ["+351 936 301 557"],
     hrefPrefix: "tel:",
   },
 ];

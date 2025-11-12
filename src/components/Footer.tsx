@@ -8,6 +8,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
 
 const NAV_ITEMS = [
   { href: "/", label: "Início" },
@@ -35,12 +36,7 @@ const SOCIALS = [
   {
     href: "https://x.com/micshyne",
     label: "X (antigo Twitter)",
-    icon: FaTwitter,
-  },
-  {
-    href: "https://soundcloud.com/micshyne-music",
-    label: "SoundCloud",
-    icon: FaSoundcloud,
+    icon: FaX,
   },
   {
     href: "https://www.youtube.com/@MICSHYNE",

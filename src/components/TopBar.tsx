@@ -10,6 +10,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 
 const SOCIAL_LINKS = [
@@ -31,12 +32,7 @@ const SOCIAL_LINKS = [
   {
     href: "https://x.com/micshyne",
     label: "Perfil no X do Estúdio 747",
-    icon: FaTwitter,
-  },
-  {
-    href: "https://soundcloud.com/micshyne-music",
-    label: "SoundCloud do Estúdio 747",
-    icon: FaSoundcloud,
+    icon: FaX,
   },
   {
     href: "https://www.youtube.com/@MICSHYNE",

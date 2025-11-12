@@ -59,14 +59,14 @@ const TEAM = [
     role: "Produtor executivo & engenheiro de som",
     description:
       "Mais de 15 anos de produção musical, sound design e engenharia de mistura para artistas independentes e marcas internacionais.",
-    portrait: "/7.jpg",
+    portrait: "/quemsomos-micshyne.jpeg",
   },
   {
     name: "Soro Music",
     role: "Direção criativa & vocal coaching",
     description:
       "Artista, letrista e vocal coach que conduz sessões de interpretação, escrita e storytelling áudio para lançar músicas e campanhas com identidade.",
-    portrait: "/8.jpg",
+    portrait: "/quemsomos-soro.jpg",
   },
 ];
 
@@ -173,7 +173,10 @@ export default function QuemSomos() {
                 key={name}
                 className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg transition hover:border-primary-300/60 hover:shadow-glow"
               >
-                <div className="relative aspect-[4/3]">
+                <div
+                  className="relative"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
                   <Image
                     src={portrait}
                     alt={`Retrato de ${name}`}
