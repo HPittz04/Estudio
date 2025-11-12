@@ -5,9 +5,9 @@
 :root {
   --background: #090a16;
   --foreground: #f1f5f9;
-  --primary-200: #a18bff;
-  --primary-300: #c5b4ff;
-  --primary-400: #e4d5ff;
+  --primary-200: #5f3bf6;
+  --primary-300: #7e5ef8;
+  --primary-400: #a884ff;
 }
 
 @theme inline {
