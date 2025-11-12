@@ -25,7 +25,7 @@ function extractString(value: unknown) {
 }
 
 function resolveSessionLabel(value: string) {
-  return SESSION_TYPE_LABELS[value] ?? value || "Não indicado";
+  return SESSION_TYPE_LABELS[value] ?? (value || "Não indicado");
 }
 
 export async function POST(request: Request) {
