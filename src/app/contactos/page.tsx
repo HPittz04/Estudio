@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { ReservationForm } from "./_components/reservation-form";
+
 export const metadata: Metadata = {
   title: "Contactos Estúdio 747",
   description:
@@ -45,49 +47,52 @@ export default function Contactos() {
 
       <section className="relative isolate overflow-hidden py-16" aria-labelledby="contactos-diretos">
         <div className="absolute inset-0 bg-texture opacity-70" aria-hidden></div>
-        <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-4 sm:px-6 lg:flex-row">
-          <div className="flex-1 space-y-8 rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-lg">
-            <div>
-              <h2 id="contactos-diretos" className="text-3xl font-bold text-white sm:text-4xl">
-                Linhas diretas
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Preferes email, chamada ou mensagem? Respondemos geralmente em menos de 24 horas úteis.
-              </p>
+        <div className="relative mx-auto max-w-5xl space-y-6 px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-10 lg:space-y-0">
+          <ReservationForm />
+          <div className="space-y-6">
+            <div className="space-y-8 rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-lg">
+              <div>
+                <h2 id="contactos-diretos" className="text-3xl font-bold text-white sm:text-4xl">
+                  Linhas diretas
+                </h2>
+                <p className="mt-2 text-sm text-slate-300">
+                  Preferes email, chamada ou mensagem? Respondemos geralmente em menos de 24 horas úteis.
+                </p>
+              </div>
+              <div className="space-y-6">
+                {CONTACT_METHODS.map(({ label, values, hrefPrefix }) => (
+                  <div key={label}>
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-300">{label}</h3>
+                    <ul className="mt-2 space-y-2 text-base text-slate-200">
+                      {values.map((value) => (
+                        <li key={value}>
+                          <a
+                            href={`${hrefPrefix}${value.replace(/\s+/g, "")}`}
+                            className="rounded-full px-3 py-1 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+                          >
+                            {value}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-2 text-sm text-slate-300">
+                <p className="font-semibold uppercase tracking-[0.3em] text-primary-300">Morada</p>
+                <p>Rua António Sérgio, 14 — Vendas Novas, Portugal</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Visitas sob marcação prévia.</p>
+              </div>
             </div>
-            <div className="space-y-6">
-              {CONTACT_METHODS.map(({ label, values, hrefPrefix }) => (
-                <div key={label}>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-300">{label}</h3>
-                  <ul className="mt-2 space-y-2 text-base text-slate-200">
-                    {values.map((value) => (
-                      <li key={value}>
-                        <a
-                          href={`${hrefPrefix}${value.replace(/\s+/g, "")}`}
-                          className="rounded-full px-3 py-1 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
-                        >
-                          {value}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg">
+              <iframe
+                title="Localização do Estúdio 747"
+                className="h-[420px] w-full"
+                src="https://maps.google.com/maps?q=estudio747+Vendas+Novas&output=embed"
+                loading="lazy"
+                allowFullScreen
+              />
             </div>
-            <div className="space-y-2 text-sm text-slate-300">
-              <p className="font-semibold uppercase tracking-[0.3em] text-primary-300">Morada</p>
-              <p>Rua António Sérgio, 14 — Vendas Novas, Portugal</p>
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Visitas sob marcação prévia.</p>
-            </div>
-          </div>
-          <div className="flex-1 overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg">
-            <iframe
-              title="Localização do Estúdio 747"
-              className="h-[420px] w-full"
-              src="https://maps.google.com/maps?q=estudio747+Vendas+Novas&output=embed"
-              loading="lazy"
-              allowFullScreen
-            />
           </div>
         </div>
       </section>
