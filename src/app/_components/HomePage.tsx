@@ -241,7 +241,10 @@ export default function HomePage() {
                 transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <span className="sr-only">Ampliar fotografia do estúdio</span>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <div
+                  className="relative overflow-hidden rounded-2xl"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
                   <Image
                     src={src}
                     alt={alt}
@@ -369,7 +372,10 @@ export default function HomePage() {
                   transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <span className="sr-only">Abrir {alt}</span>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ aspectRatio: "4 / 3" }}
+                  >
                     <Image
                       src={src}
                       alt={alt}
@@ -433,7 +439,10 @@ export default function HomePage() {
             >
               ×
             </button>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ aspectRatio: "4 / 3" }}
+            >
               <Image
                 src={GALLERY_IMAGES[selectedIndex].src}
                 alt={GALLERY_IMAGES[selectedIndex].alt}

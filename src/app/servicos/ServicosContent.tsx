@@ -173,7 +173,10 @@ export default function ServicosContent() {
                   className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg transition hover:border-primary-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
                 >
                   <span className="sr-only">Abrir {alt}</span>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ aspectRatio: "4 / 3" }}
+                  >
                     <Image
                       src={src}
                       alt={alt}
@@ -214,7 +217,10 @@ export default function ServicosContent() {
             >
               ×
             </button>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ aspectRatio: "4 / 3" }}
+            >
               <Image
                 src={PORTFOLIO[selected].src}
                 alt={PORTFOLIO[selected].alt}

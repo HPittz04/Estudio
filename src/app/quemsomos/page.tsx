@@ -173,7 +173,10 @@ export default function QuemSomos() {
                 key={name}
                 className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-surface/90 shadow-lg transition hover:border-primary-300/60 hover:shadow-glow"
               >
-                <div className="relative aspect-[4/3]">
+                <div
+                  className="relative"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
                   <Image
                     src={portrait}
                     alt={`Retrato de ${name}`}
