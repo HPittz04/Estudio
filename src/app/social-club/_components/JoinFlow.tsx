@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 async function createCheckoutSession() {
   const response = await fetch("/api/payments/create-checkout-session", {
@@ -42,6 +43,16 @@ export default function JoinFlow({ user, membershipActive }: JoinFlowProps) {
   const [inviteLink, setInviteLink] = useState<string | null>(null);
   const [inviteError, setInviteError] = useState<string | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [signingOut, setSigningOut] = useState(false);
+
+  async function handleSignOut() {
+    setSigningOut(true);
+    try {
+      await signOut({ callbackUrl: "/social-club" });
+    } finally {
+      setSigningOut(false);
+    }
+  }
 
   if (!user) {
     return (
@@ -113,6 +124,14 @@ export default function JoinFlow({ user, membershipActive }: JoinFlowProps) {
         <p className="mt-3 text-center text-xs text-slate-400">
           O pagamento é processado de forma segura via Stripe.
         </p>
+        <button
+          type="button"
+          onClick={handleSignOut}
+          disabled={signingOut}
+          className="mt-6 w-full rounded-full border border-white/30 px-4 py-3 text-xs font-bold uppercase tracking-[0.3em] text-slate-200 transition hover:bg-white/10 disabled:opacity-60"
+        >
+          {signingOut ? "A terminar sessão..." : "Terminar sessão"}
+        </button>
       </div>
     );
   }
@@ -146,6 +165,14 @@ export default function JoinFlow({ user, membershipActive }: JoinFlowProps) {
           </a>
         </div>
       ) : null}
+      <button
+        type="button"
+        onClick={handleSignOut}
+        disabled={signingOut}
+        className="mt-6 w-full rounded-full border border-white/30 px-4 py-3 text-xs font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:bg-white/10 disabled:opacity-60"
+      >
+        {signingOut ? "A terminar sessão..." : "Terminar sessão"}
+      </button>
     </div>
   );
 }

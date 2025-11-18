@@ -24,7 +24,11 @@ Open <http://localhost:3000> to browse the site.
 
 Copy `.env.example` to `.env.local` and fill the values:
 
-- `NEXTAUTH_SECRET` – random string used by NextAuth.
+```bash
+cp .env.example .env.local
+```
+
+- `NEXTAUTH_SECRET` – random string used by NextAuth (required for login tokens).
 - `NEXTAUTH_URL` – base URL used when generating absolute URLs.
 - `STRIPE_SECRET_KEY` / `STRIPE_PRICE_ID` – Stripe credentials for the subscription plan.
 - `NEXT_PUBLIC_STRIPE_SUCCESS_URL` / `NEXT_PUBLIC_STRIPE_CANCEL_URL` – URLs Stripe will use after checkout.
@@ -38,6 +42,8 @@ For local demos you can reuse the seeded user stored in `data/users.json`:
 | `demo@estudio747.com` | `changeme123` |
 
 Create new accounts via `/registar`. All user and membership data is stored in JSON so you can delete/adjust entries manually if needed.
+
+> 💡 If you skip `NEXTAUTH_SECRET` or `NEXTAUTH_URL`, the dev server falls back to `local-dev-secret` and `http://localhost:3000` so you can still test locally, but you **must** provide real values before deploying.
 
 ### Stripe notes
 
