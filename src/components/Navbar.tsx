@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/", label: "Início" },
   { href: "/quemsomos", label: "Quem somos" },
   { href: "/servicos", label: "Serviços" },
+  { href: "/social-club", label: "Social Club" },
   { href: "/contactos", label: "Contactos" },
 ];
 

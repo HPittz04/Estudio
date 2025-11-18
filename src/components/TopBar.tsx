@@ -2,14 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaSoundcloud,
-  FaSpotify,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 
