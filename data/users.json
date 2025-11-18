@@ -1,0 +1,8 @@
+[
+  {
+    "id": "demo-user",
+    "email": "demo@estudio747.com",
+    "name": "Membro Demonstração",
+    "passwordHash": "$2b$10$4v/OGB1YfKNwsx0q/YequOspakX7AJ97bjYGquVki9QPe/xADOMgq"
+  }
+]
