@@ -1,13 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaSoundcloud,
-  FaSpotify,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 
 const NAV_ITEMS = [
