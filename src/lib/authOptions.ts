@@ -25,6 +25,7 @@ if (!process.env.NEXTAUTH_URL) {
 
 export const authOptions: NextAuthOptions = {
   secret: resolvedSecret,
+export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
