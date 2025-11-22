@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Transition, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -75,12 +75,14 @@ const GALLERY_IMAGES = [
 ];
 
 const MotionLink = motion(Link);
+const PRIMARY_EASE = [0.22, 1, 0.36, 1] as const;
+const STANDARD_EASE = [0.4, 0, 0.2, 1] as const;
 
 export default function HomePage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  const heroTextVariants = useMemo(
+  const heroTextVariants = useMemo<Variants>(
     () => ({
       hidden: {
         opacity: 0,
@@ -91,14 +93,14 @@ export default function HomePage() {
         y: 0,
         transition: {
           duration: shouldReduceMotion ? 0 : 0.8,
-          ease: [0.22, 1, 0.36, 1],
+          ease: PRIMARY_EASE,
         },
       },
     }),
     [shouldReduceMotion],
   );
 
-  const heroMediaVariants = useMemo(
+  const heroMediaVariants = useMemo<Variants>(
     () => ({
       hidden: {
         opacity: 0,
@@ -109,7 +111,7 @@ export default function HomePage() {
         scale: 1,
         transition: {
           duration: shouldReduceMotion ? 0 : 0.8,
-          ease: [0.22, 1, 0.36, 1],
+          ease: PRIMARY_EASE,
           delay: shouldReduceMotion ? 0 : 0.1,
         },
       },
@@ -117,10 +119,10 @@ export default function HomePage() {
     [shouldReduceMotion],
   );
 
-  const cardTransition = useMemo(
+  const cardTransition = useMemo<Transition>(
     () => ({
       duration: shouldReduceMotion ? 0 : 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: PRIMARY_EASE,
     }),
     [shouldReduceMotion],
   );
@@ -235,7 +237,7 @@ export default function HomePage() {
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-2 text-left shadow-lg transition hover:border-primary-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
                 whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                 whileFocus={shouldReduceMotion ? undefined : { y: -2 }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: STANDARD_EASE }}
               >
                 <span className="sr-only">Ampliar fotografia do estúdio</span>
                 <div
@@ -366,7 +368,7 @@ export default function HomePage() {
                   className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg transition hover:border-primary-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
                   whileHover={shouldReduceMotion ? undefined : { y: -6 }}
                   whileFocus={shouldReduceMotion ? undefined : { y: -4 }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: STANDARD_EASE }}
                 >
                   <span className="sr-only">Abrir {alt}</span>
                   <div

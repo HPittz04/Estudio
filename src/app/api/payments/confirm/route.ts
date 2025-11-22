@@ -7,7 +7,9 @@ import { markMembershipActive } from "@/lib/membershipStore";
 export const runtime = "nodejs";
 
 const stripeSecret = process.env.STRIPE_SECRET_KEY;
-const stripe = stripeSecret ? new Stripe(stripeSecret, { apiVersion: "2024-06-20" }) : null;
+const stripe = stripeSecret
+  ? new Stripe(stripeSecret, { apiVersion: "2025-11-17.clover" as Stripe.LatestApiVersion })
+  : null;
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
