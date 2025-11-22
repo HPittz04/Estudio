@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import PaymentConfirmation from "./PaymentConfirmation";
 
 export const metadata: Metadata = {
@@ -10,7 +11,9 @@ export default function ConfirmPage() {
   return (
     <section className="bg-texture py-24">
       <div className="mx-auto max-w-3xl">
-        <PaymentConfirmation />
+        <Suspense fallback={<div className="text-center text-slate-200">A carregar pagamento...</div>}>
+          <PaymentConfirmation />
+        </Suspense>
       </div>
     </section>
   );

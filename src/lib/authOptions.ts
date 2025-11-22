@@ -6,18 +6,37 @@ const DEV_NEXTAUTH_SECRET = "local-dev-secret";
 const DEV_NEXTAUTH_URL = "http://localhost:3000";
 
 let resolvedSecret = process.env.NEXTAUTH_SECRET;
+let warnedMissingSecret = false;
+let warnedMissingUrl = false;
 
 if (!resolvedSecret) {
   if (process.env.NODE_ENV === "production") {
-    throw new Error("NEXTAUTH_SECRET não está definido. Adiciona-o ao ficheiro .env.");
+    if (!warnedMissingSecret) {
+      console.warn(
+        "[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento. Configura NEXTAUTH_SECRET em produção.",
+      );
+      warnedMissingSecret = true;
+    }
+    resolvedSecret = DEV_NEXTAUTH_SECRET;
+    process.env.NEXTAUTH_SECRET = resolvedSecret;
+  } else {
+    resolvedSecret = DEV_NEXTAUTH_SECRET;
+    process.env.NEXTAUTH_SECRET = resolvedSecret;
+    if (!warnedMissingSecret) {
+      console.warn(
+        "[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento. Configura NEXTAUTH_SECRET em produção.",
+      );
+      warnedMissingSecret = true;
+    }
   }
-  console.warn("[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento.");
-  resolvedSecret = DEV_NEXTAUTH_SECRET;
 }
 
 if (!process.env.NEXTAUTH_URL) {
   if (process.env.NODE_ENV === "production") {
-    console.warn("[auth] NEXTAUTH_URL não está definido. Algumas funcionalidades podem falhar.");
+    if (!warnedMissingUrl) {
+      console.warn("[auth] NEXTAUTH_URL não está definido. Algumas funcionalidades podem falhar.");
+      warnedMissingUrl = true;
+    }
   } else {
     process.env.NEXTAUTH_URL = DEV_NEXTAUTH_URL;
   }
@@ -25,7 +44,6 @@ if (!process.env.NEXTAUTH_URL) {
 
 export const authOptions: NextAuthOptions = {
   secret: resolvedSecret,
-export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
