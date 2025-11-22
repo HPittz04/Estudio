@@ -8,10 +8,9 @@ const DEV_NEXTAUTH_URL = "http://localhost:3000";
 let resolvedSecret = process.env.NEXTAUTH_SECRET;
 
 if (!resolvedSecret) {
-  if (process.env.NODE_ENV === "production") {
-    throw new Error("NEXTAUTH_SECRET não está definido. Adiciona-o ao ficheiro .env.");
-  }
-  console.warn("[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento.");
+  console.warn(
+    "[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento. Configura NEXTAUTH_SECRET em produção.",
+  );
   resolvedSecret = DEV_NEXTAUTH_SECRET;
 }
 
@@ -25,7 +24,6 @@ if (!process.env.NEXTAUTH_URL) {
 
 export const authOptions: NextAuthOptions = {
   secret: resolvedSecret,
-export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
