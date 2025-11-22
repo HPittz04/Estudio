@@ -5,27 +5,42 @@ import { verifyUserCredentials } from "./userStore";
 const DEV_NEXTAUTH_SECRET = "local-dev-secret";
 const DEV_NEXTAUTH_URL = "http://localhost:3000";
 
-let resolvedSecret = process.env.NEXTAUTH_SECRET;
+function resolveSecret(): string {
+  if (process.env.NEXTAUTH_SECRET) {
+    return process.env.NEXTAUTH_SECRET;
+  }
 
-if (!resolvedSecret) {
   if (process.env.NODE_ENV === "production") {
     throw new Error("NEXTAUTH_SECRET não está definido. Adiciona-o ao ficheiro .env.");
   }
+
   console.warn("[auth] NEXTAUTH_SECRET não definido. A usar um valor apenas para desenvolvimento.");
-  resolvedSecret = DEV_NEXTAUTH_SECRET;
+  return DEV_NEXTAUTH_SECRET;
 }
 
-if (!process.env.NEXTAUTH_URL) {
+function resolveNextAuthUrl(): string | undefined {
+  if (process.env.NEXTAUTH_URL) {
+    return process.env.NEXTAUTH_URL;
+  }
+
   if (process.env.NODE_ENV === "production") {
     console.warn("[auth] NEXTAUTH_URL não está definido. Algumas funcionalidades podem falhar.");
-  } else {
-    process.env.NEXTAUTH_URL = DEV_NEXTAUTH_URL;
+    return undefined;
   }
+
+  console.warn("[auth] NEXTAUTH_URL não definido. A usar http://localhost:3000 em desenvolvimento.");
+  return DEV_NEXTAUTH_URL;
+}
+
+const secret = resolveSecret();
+const nextAuthUrl = resolveNextAuthUrl();
+
+if (nextAuthUrl && !process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = nextAuthUrl;
 }
 
 export const authOptions: NextAuthOptions = {
-  secret: resolvedSecret,
-export const authOptions: NextAuthOptions = {
+  secret,
   session: {
     strategy: "jwt",
   },
